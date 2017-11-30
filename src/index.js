@@ -4,8 +4,8 @@ import React, {
 import ReactDOM from 'react-dom'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
-import Header from './component/Header'
-import Content from './component/Content'
+import Header from './containers/Header'
+import Content from './containers/Content'
 
 // redux store
 // function createStore(reducer) {
