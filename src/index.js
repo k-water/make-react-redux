@@ -2,7 +2,8 @@ import React, {
   Component
 } from 'react'
 import ReactDOM from 'react-dom'
-import { createStore } from './component/redux'
+import thunk from 'redux-thunk'
+import { createStore, applyMiddleWare } from './component/redux'
 import { Provider } from './component/React-redux'
 import Header from './containers/Header'
 import Content from './containers/Content'
@@ -22,12 +23,17 @@ const themeReducer = (state, action) => {
         ...state,
         themeColor: action.themeColor
       }
+    case 'THEME_GREEN':
+      return {
+        ...state,
+        themeColor: action.themeColor
+      }
     default:
       return state
   }
 }
 
-const store = createStore(themeReducer)
+const store = createStore(themeReducer, applyMiddleWare(thunk))
 
 class Index extends Component {
   render() {

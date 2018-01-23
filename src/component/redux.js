@@ -1,5 +1,9 @@
 // redux store
-export function createStore(reducer) {
+export function createStore(reducer, middleware) {
+  // 对createStore进行扩展
+  if (middleware) {
+    return middleware(createStore)(reducer)
+  }
   let state = null
   const listeners = []
   const subscribe = (listener) => listeners.push(listener)
@@ -33,6 +37,22 @@ export function themeRed() {
     themeColor: 'red'
   }
 }
+
+export function themeGreen() {
+  return {
+    type: 'THEME_GREEN',
+    themeColor: 'green'
+  }
+}
+
+export function themeGreenAsync() {
+  return dispatch => {
+    setTimeout(() => {
+      dispatch(themeGreen())
+    }, 2000)
+  }
+}
+
 // 参数透传
 function bindActionCreator(creator, dispatch) {
   return (...args) => dispatch(creator(...args))
@@ -49,4 +69,21 @@ export function bindActionCreators(creators, dispatch) {
     ret[item] = bindActionCreator(creators[item], dispatch)
     return ret
   },{})
+}
+
+export function applyMiddleWare(middleware) {
+  return createStore => (...args) => {
+    const store = createStore(...args)
+    let dispatch = store.dispatch
+
+    const midAPI = {
+      getState: store.getState,
+      dispatch: (...args) => dispatch(...args)
+    }
+    dispatch = middleware(midAPI)(store.dispatch)
+    return {
+      ...store,
+      dispatch
+    }
+  }
 }

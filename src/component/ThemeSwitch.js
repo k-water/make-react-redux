@@ -53,6 +53,12 @@ class ThemeSwitch extends Component {
         >
           Blue
         </button>
+        <button
+          style = {{color: this.props.themeColor}}
+          onClick = {this.props.themeGreenAsync}
+        >
+          GreenAsync
+        </button>
       </div>
     )
   }

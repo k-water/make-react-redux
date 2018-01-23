@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { themeBlue, themeRed } from '../component/redux'
+import { themeBlue, themeRed, themeGreenAsync } from '../component/redux'
 import ThemeSwitch from '../component/ThemeSwitch'
 
 const mapStateToProps = state => {
@@ -20,6 +20,7 @@ const mapStateToProps = state => {
 // }
 const mapDispatchToProps = {
   themeBlue,
-  themeRed
+  themeRed,
+  themeGreenAsync
 }
 export default connect(mapStateToProps, mapDispatchToProps)(ThemeSwitch)
