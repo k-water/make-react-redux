@@ -2,7 +2,7 @@ import React, {
   Component
 } from 'react'
 import ReactDOM from 'react-dom'
-import thunk from 'redux-thunk'
+import thunk from './component/redux-thunk'
 import { createStore, applyMiddleWare } from './component/redux'
 import { Provider } from './component/React-redux'
 import Header from './containers/Header'

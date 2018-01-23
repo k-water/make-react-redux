@@ -72,6 +72,7 @@ export function bindActionCreators(creators, dispatch) {
 }
 
 export function applyMiddleWare(middleware) {
+  // args 代表 reducer
   return createStore => (...args) => {
     const store = createStore(...args)
     let dispatch = store.dispatch
