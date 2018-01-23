@@ -45,6 +45,13 @@ export function themeGreen() {
   }
 }
 
+export function themeTwice() {
+  return [{
+    type: 'THEME_RED',
+    themeColor: 'red'
+  }, themeGreenAsync()]
+}
+
 export function themeGreenAsync() {
   return dispatch => {
     setTimeout(() => {
@@ -70,8 +77,23 @@ export function bindActionCreators(creators, dispatch) {
     return ret
   },{})
 }
+/**
+ * 
+ * @param {function} funcs
+ * compose(fn1, fn2, fn3)
+ * => fn1(fn2(fn3)) 
+ */
+export function compose(...funcs) {
+  if (funcs.length === 0) {
+    return args => args
+  }
+  if (funcs.length === 1) {
+    return funcs[0]
+  }
+  return funcs.reduce((ret, item) => (...args) => ret(item(...args)))
+}
 
-export function applyMiddleWare(middleware) {
+export function applyMiddleWare(...middlewares) {
   // args 代表 reducer
   return createStore => (...args) => {
     const store = createStore(...args)
@@ -81,7 +103,11 @@ export function applyMiddleWare(middleware) {
       getState: store.getState,
       dispatch: (...args) => dispatch(...args)
     }
-    dispatch = middleware(midAPI)(store.dispatch)
+    // 单个中间件
+    // dispatch = middleware(midAPI)(store.dispatch)
+    // 多个中间件
+    const middlewareChain = middlewares.map(middleware => middleware(midAPI))
+    dispatch = compose(...middlewareChain)(store.dispatch)
     return {
       ...store,
       dispatch

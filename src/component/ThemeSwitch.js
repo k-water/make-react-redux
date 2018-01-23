@@ -59,6 +59,12 @@ class ThemeSwitch extends Component {
         >
           GreenAsync
         </button>
+        <button
+          style ={{color: this.props.themeColor}}
+          onClick={this.props.themeTwice}
+        >
+          GreenRed
+        </button>
       </div>
     )
   }

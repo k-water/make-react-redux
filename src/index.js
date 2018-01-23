@@ -3,6 +3,7 @@ import React, {
 } from 'react'
 import ReactDOM from 'react-dom'
 import thunk from './component/redux-thunk'
+import arrayThunk from './component/redux-array'
 import { createStore, applyMiddleWare } from './component/redux'
 import { Provider } from './component/React-redux'
 import Header from './containers/Header'
@@ -33,7 +34,7 @@ const themeReducer = (state, action) => {
   }
 }
 
-const store = createStore(themeReducer, applyMiddleWare(thunk))
+const store = createStore(themeReducer, applyMiddleWare(thunk, arrayThunk))
 
 class Index extends Component {
   render() {
