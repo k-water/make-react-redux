@@ -1,17 +1,16 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-
 class ThemeSwitch extends Component {
   static propTypes = {
     themeColor: PropTypes.string,
     onSwitchColor: PropTypes.func
   }
 
-  handleSwitchColor (color) {
-    if (this.props.onSwitchColor) {
-      this.props.onSwitchColor(color)
-    }
-  }
+  // handleSwitchColor (color) {
+  //   if (this.props.onSwitchColor) {
+  //     this.props.onSwitchColor(color)
+  //   }
+  // }
 
   // componentWillMount () {
   //   const { store } = this.context
@@ -44,13 +43,13 @@ class ThemeSwitch extends Component {
       <div>
         <button 
           style = {{color: this.props.themeColor}}
-          onClick = {this.handleSwitchColor.bind(this, 'red')}
+          onClick = {this.props.themeRed}
         >
           Red
         </button>
         <button 
           style = {{color: this.props.themeColor}}
-          onClick = {this.handleSwitchColor.bind(this, 'blue')}
+          onClick = {this.props.themeBlue}
         >
           Blue
         </button>
