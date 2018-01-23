@@ -2,10 +2,10 @@ import React, {
   Component
 } from 'react'
 import ReactDOM from 'react-dom'
-import thunk from './component/redux-thunk'
-import arrayThunk from './component/redux-array'
-import { createStore, applyMiddleWare } from './component/redux'
-import { Provider } from './component/React-redux'
+import { createStore, applyMiddleWare } from './redux/redux'
+import { Provider } from './redux/react-redux/react-redux'
+import thunk from './redux/middleware/redux-thunk'
+import arrayThunk from './redux/middleware/redux-array'
 import Header from './containers/Header'
 import Content from './containers/Content'
 

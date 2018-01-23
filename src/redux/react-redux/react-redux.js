@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { bindActionCreators } from './redux'
+import { bindActionCreators } from '../redux'
 
 // 高阶组件HOC
 export const connect = (mapStateToProps=state=>state, mapDispatchToProps={}) => WrappedComponent => {
